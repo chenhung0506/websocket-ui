@@ -1,0 +1,53 @@
+$font-size-24: 24px;
+$font-size-20: 20px;
+$font-size-16: 15px;
+$font-size-14: 14px;
+$font-size-12: 12px;
+
+$text-font-size: 18px;
+$color-font-primary: #d1d1d1;
+$color-font-43: #434343;
+
+@mixin flex-box {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+}
+
+@mixin backgound-gradient() {
+  background-image: linear-gradient(top,  #0c0c0c, #003952);
+  background-image: -webkit-linear-gradient(top,  #0c0c0c, #003952);
+  background-image: -o-linear-gradient(top,  #0c0c0c, #003952);
+  background-image: -ms-linear-gradient(top,  #0c0c0c, #003952);
+}
+
+@mixin corner-robot() {
+  background: -webkit-linear-gradient(135deg, transparent 8px, #3a7573 0) top left;
+  background-image: -o-linear-gradient(135deg, transparent 15px, #3a7573 0) top left;
+  background-image: -ms-linear-gradient(135deg, transparent 15px, #3a7573 0) top left;
+  background:linear-gradient(135deg, transparent 8px, transparent 0) top left;
+  background-size: 100% 100%;
+  background-repeat: no-repeat; 
+  // color: #fff;
+  // padding: 5px 15px;
+  // text-align: center;
+  // box-shadow: 0 0 1px 1px #fff;
+  // margin-bottom: 30px;
+}
+
+@mixin grid() {
+  background-image: linear-gradient(top, transparent 15px, white 16px), linear-gradient(left, transparent 16px, white 17px);
+  background-image: -o-linear-gradient(top, transparent 15px, white 16px), -o-linear-gradient(left, transparent 16px, white 17px);
+  background-image: -ms-linear-gradient(top, transparent 15px, white 16px), -ms-linear-gradient(left, transparent 16px, white 17px);
+  background-image: -webkit-linear-gradient(top, transparent 15px, white 16px), -webkit-linear-gradient(left, transparent 16px, white 17px);
+
+  background-size: 17px 16px;
+  background-repeat: repeat;
+  opacity: 0.09;
+}
