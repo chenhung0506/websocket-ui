@@ -570,7 +570,7 @@ export default {
           const ishttps = document.location.protocol === 'https:';
           const domain = this.getDomain();
           if (ishttps) {
-            this.webSocket = new WebSocket(`wss://${domain}/websocket/${senderID}`);
+            this.webSocket = new WebSocket(`ws://${domain}/websocket/${senderID}`);
           } else {
             this.webSocket = new WebSocket(`ws://${domain}/websocket/${senderID}`);
             console.log(`ws://${domain}/websocket/${senderID}`)
