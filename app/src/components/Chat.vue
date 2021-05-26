@@ -186,6 +186,7 @@ export default {
       timer: {},
       webSocketTimer: {},
       webSocketIsInit: false,
+      helloMsg: {"data":["明日天氣預報","一週天氣","留言"],"subType":"relatelist","type":"text","value":"歡迎使用以下功能"},
     };
   },
   components: {
@@ -239,7 +240,8 @@ export default {
     getDomain() {
       // return '192.168.3.155';
       // return window.location.host;
-      return 'localhost:3002';
+      // return 'localhost:3002';
+      return 'localhost:80';
     },
     openFeedbackInput(val) {
       if (val.feedbackMessageImg === true) {
@@ -318,12 +320,15 @@ export default {
           console.log('webSocket.readyState:',this.webSocket.readyState, new Date().toLocaleTimeString());
         }
       })
+      console.log(this.helloMsg)
+      this.handleProcessAnswer(JSON.stringify(this.helloMsg));
 
       const domain = this.getDomain();
       const params = {
         domain: this.getQueryString('location') || 'www.continental-tires.cn',
       };
       const qUrl = `${protocol}//${domain}/chat-room/message/showFaq`;
+
 
     },
     sendText() {
@@ -387,7 +392,7 @@ export default {
       if (this.location.length > 0) {
         this.mess.domain = this.location;
       } else {
-        this.mess.domain = 'www.kgibank.com';
+        this.mess.domain = 'websocket.linch.ml';
       }
       this.mess.userId = this.userId;
       this.mess.sessionId = this.sessionId;
@@ -401,13 +406,14 @@ export default {
       this.userQ = '';
     },
     handleProcessAnswer(data) {
+      console.log(data.length)
       if (data && data.length > 0) {
         let jsonData = '';
         try {
           jsonData = JSON.parse(data);
-          this.log("receive: ", jsonData);
+          console.log("receive: ", jsonData);
         } catch(e) {
-          // console.log(e)
+          console.log(e)
         }
 
         const helloType = false;
@@ -498,8 +504,7 @@ export default {
             data: curNode.data,
             isHello: helloType,
           };
-          // console.log('appendChat 第二次');
-          this.appendChat(wxObj, 'robot');
+          // this.appendChat(wxObj, 'robot');
         }
         this.appendChat(wxObj, 'robot');
       }
@@ -575,15 +580,15 @@ export default {
             this.webSocket = new WebSocket(`ws://${domain}/websocket/${senderID}`);
             console.log(`ws://${domain}/websocket/${senderID}`)
           }
-          // 连接错误
+          // 連接錯誤
           this.webSocket.onerror = this.setErrorMessage;
-          // 连接成功
+          // 連接成功
           this.webSocket.onopen = this.setOnopenMessage;
-          // 收到消息的回调
+          // 收到消息的回調
           this.webSocket.onmessage = this.setOnmessageMessage;
-          // 连接关闭的回调
+          // 连接关闭的回調
           this.webSocket.onclose = this.setOncloseMessage;
-          // 监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+          // 監聽窗口關閉事件，當窗口關閉時，主動去關閉websocket連接，防止連接還沒斷開就關閉窗口，server端會拋異常。
           window.onbeforeunload = this.onbeforeunload;
 
           this.webSocketTimer = setInterval(() => {

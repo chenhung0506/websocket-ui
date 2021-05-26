@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "split-string": "^3.1.0",
     "style-loader": "^2.0.0",
     "stylus-loader": "^5.0.0",
     "vue": "^2.5.2",
