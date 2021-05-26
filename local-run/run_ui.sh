@@ -18,6 +18,7 @@ while getopts "R:I:h" OPT ; do
       echo "    -H : Use local auth";
       echo "Example:";
       echo "    ./run_ui.sh -I 8080";
+      echo "    ./run_ui.sh -R 172.105.230.313002";
       exit 1
       ;;
   esac
