@@ -2,6 +2,7 @@
 REPO=harbor.chlin.tk/vue
 CONTAINER=websocket-ui
 TAG=$(git rev-parse --short HEAD)-$(date '+%Y%m%d-%H%M') 
+TAG="latest"
 DOCKER_IMAGE=$REPO/$CONTAINER:$TAG
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BUILDROOT=$DIR/..

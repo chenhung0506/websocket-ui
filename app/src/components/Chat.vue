@@ -238,10 +238,8 @@ export default {
   },
   methods: {
     getDomain() {
-      // return '192.168.3.155';
-      // return window.location.host;
-      // return 'localhost:3002';
-      return 'localhost:80';
+      return window.location.host;
+      // return '192.168.1.51';
     },
     openFeedbackInput(val) {
       if (val.feedbackMessageImg === true) {
@@ -282,7 +280,6 @@ export default {
     },
     getInit() {
       const protocol = document.location.protocol;
-      this.senderId = 'test';
       this.isDebug = this.urlSearchParams("debug") === "true" ? true : false;
       this.userId = this.urlSearchParams("userId");
       this.sessionId = this.urlSearchParams("session_id");
@@ -575,7 +572,7 @@ export default {
           const ishttps = document.location.protocol === 'https:';
           const domain = this.getDomain();
           if (ishttps) {
-            this.webSocket = new WebSocket(`ws://${domain}/websocket/${senderID}`);
+            this.webSocket = new WebSocket(`wss://${domain}/websocket/${senderID}`);
           } else {
             this.webSocket = new WebSocket(`ws://${domain}/websocket/${senderID}`);
             console.log(`ws://${domain}/websocket/${senderID}`)
